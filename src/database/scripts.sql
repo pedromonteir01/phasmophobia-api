@@ -9,15 +9,15 @@ CREATE TABLE ghosts_types (
 );
 
 CREATE TABLE evidences(
-    name VARCHAR(21) PRIMARY KEY,
-)
+    name VARCHAR(21) PRIMARY KEY
+);
 
 /* association table */
 
 CREATE TABLE ghosts_evidences(
     ghost VARCHAR(35),
     evidence VARCHAR(21),
-    PRIMARY KEY (ghost, evidence)
+    PRIMARY KEY (ghost, evidence),
     FOREIGN KEY (ghost) REFERENCES ghosts_types(name),
     FOREIGN KEY (evidence) REFERENCES evidences(name)
 );
