@@ -21,3 +21,12 @@ CREATE TABLE ghosts_evidences(
     FOREIGN KEY (ghost) REFERENCES ghosts_types(name),
     FOREIGN KEY (evidence) REFERENCES evidences(name)
 );
+
+INSERT INTO evidences(name) VALUES 
+('emf5'), 
+('ultraviolet'), 
+('ghost writing'), 
+('freezing temperatures'), 
+('d.o.t.s projector'), 
+('ghost orb'), 
+('spirit box');
