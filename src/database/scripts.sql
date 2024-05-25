@@ -30,3 +30,9 @@ INSERT INTO evidences(name) VALUES
 ('d.o.t.s projector'), 
 ('ghost orb'), 
 ('spirit box');
+
+INSERT INTO ghosts_types(name, description) VALUES('spirit', 'Spirits are very common ghosts. They are very powerful, but passive, only attacking when they need to. They defend their place of death to the utmost degree, killing anyone that is caught overstaying their welcome.');
+INSERT INTO ghosts_evidences(ghost, evidence) VALUES
+('spirit', 'emf5'),
+('spirit', 'spirit box'),
+('spirit', 'ghost writing');
