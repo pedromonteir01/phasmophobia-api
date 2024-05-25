@@ -31,11 +31,22 @@ const getTypeByName = async(req, res) => {
 
         return type.rowCount > 0 ? 
             res.status(200).send( type.rows[0] ):
-            res.status(200).send({ message: 'Types not found' });
+            res.status(200).send({ message: 'Type not found' });
     } catch(e) {
         console.log(e);
         return res.status(500).send({ message: 'Not could GET http' });
     }
 }
 
-module.exports = { getAllTypes, getTypeByName };
+const postType = async(req, res) => {
+    try {
+        const { name, description, evidences } = req.body;
+        console.log(evidences);
+
+    } catch(e) {
+        console.log(e);
+        return res.status(500).send({ message: 'Not could POST http' });
+    }
+}
+
+module.exports = { getAllTypes, getTypeByName, postType };
