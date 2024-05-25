@@ -1,4 +1,5 @@
 const pool = require('../database/database.config');
+const { sameEvidence } = require('../models/verify.functions');
 
 const getAllTypes = async(req, res) => {
     try {
@@ -40,7 +41,7 @@ const getTypeByName = async(req, res) => {
 
 const postType = async(req, res) => {
     try {
-        const { name, description, evidences } = req.body;
+        const { name, description } = req.body;
         
         if(!name || !description || !evidences) {
             return res.status(400).send({ message: 'incomplete data' });
@@ -48,6 +49,8 @@ const postType = async(req, res) => {
             return res.status(400).send({ message: 'short name' });
         } else if(description.length < 15) {
             return res.status(400).send({ message: 'short description' });
+        } else {
+            
         }
     } catch(e) {
         console.log(e);
