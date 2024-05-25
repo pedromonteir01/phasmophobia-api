@@ -41,8 +41,14 @@ const getTypeByName = async(req, res) => {
 const postType = async(req, res) => {
     try {
         const { name, description, evidences } = req.body;
-        console.log(evidences);
-
+        
+        if(!name || !description || !evidences) {
+            return res.status(400).send({ message: 'incomplete data' });
+        } else if(name.length < 3) {
+            return res.status(400).send({ message: 'short name' });
+        } else if(description.length < 15) {
+            return res.status(400).send({ message: 'short description' });
+        }
     } catch(e) {
         console.log(e);
         return res.status(500).send({ message: 'Not could POST http' });
