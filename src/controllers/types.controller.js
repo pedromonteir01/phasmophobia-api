@@ -120,13 +120,19 @@ const putType = async (req, res) => {
                 if (ghost.name !== name) {
                     return res.status(400).send({ message: 'a type with this evidences already exists' });
                 } else {
+
                     const ids = (await pool.query('SELECT id FROM ghosts_evidences WHERE ghost = $1',[name])).rows;
                     const catchIds = ids.map(item => item.id);
+
+                    await pool.query('UPDATE ghosts_evidences SET ghost=$1 WHERE id=$2', ['suportPut', catchIds[0]]);
+                    await pool.query('UPDATE ghosts_evidences SET ghost=$1 WHERE id=$2', ['suportPut', catchIds[1]]);
+                    await pool.query('UPDATE ghosts_evidences SET ghost=$1 WHERE id=$2', ['suportPut', catchIds[2]]);
+
+                    await pool.query('UPDATE ghosts_types SET name = $1, description = $2 WHERE name = $3', [newName, description, name]);
 
                     await pool.query('UPDATE ghosts_evidences SET ghost=$1, evidence=$2 WHERE id=$3', [newName, evidences[0], catchIds[0]]);
                     await pool.query('UPDATE ghosts_evidences SET ghost=$1, evidence=$2 WHERE id=$3', [newName, evidences[1], catchIds[1]]);
                     await pool.query('UPDATE ghosts_evidences SET ghost=$1, evidence=$2 WHERE id=$3', [newName, evidences[2], catchIds[2]]);
-
                         
                     return res.status(200).send({ message: 'type updated successfully' });
                 }

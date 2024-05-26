@@ -36,3 +36,5 @@ INSERT INTO ghosts_evidences(ghost, evidence) VALUES
 ('spirit', 'emf5'),
 ('spirit', 'spirit box'),
 ('spirit', 'ghost writing');
+
+INSERT INTO ghosts_types(name, description) VALUES('suportPut', 'GarantPUT');
