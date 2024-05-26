@@ -4,7 +4,7 @@ const { sameEvidence, evidencesExists } = require('../models/verify.functions');
 const getAllTypes = async(req, res) => {
     try {
         const types = await pool.query(`
-        SELECT ghosts_types.name AS type, STRING_AGG(ghosts_evidences.evidence, ', ') AS evidences
+        SELECT ghosts_types.name AS type, ghosts_types.description, STRING_AGG(ghosts_evidences.evidence, ', ') AS evidences
         FROM ghosts_types
         INNER JOIN ghosts_evidences ON ghosts_types.name = ghosts_evidences.ghost
         GROUP BY ghosts_types.name;
@@ -63,6 +63,7 @@ const postType = async(req, res) => {
                     FROM ghosts_evidences
                     WHERE ghosts_evidences.evidence IN ($1, $2, $3)
                     GROUP BY ghosts_evidences.ghost
+                    HAVING COUNT(DISTINCT ghosts_evidences.evidence) = 3
                 ) AS matched_ghosts ON ghosts_types.name = matched_ghosts.ghost;
                 `, [evidences[0], evidences[1], evidences[2]])).rows[0];
 
