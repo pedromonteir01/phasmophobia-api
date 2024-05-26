@@ -31,6 +31,7 @@ INSERT INTO evidences(name, description) VALUES
 ('d.o.t.s projector', 'A laser grid of light that can reveal the silhouette of the ghost.'), 
 ('ghost orb', 'Small floating orbs of light, only visible through a camera.'), 
 ('spirit box', 'Only certain ghosts will talk through a Spirit Box when asked a question with your voice. Make sure the lights are turned off.');
+('suportPut', 'suportPut');
 
 INSERT INTO ghosts_types(name, description) VALUES('spirit', 'Spirits are very common ghosts. They are very powerful, but passive, only attacking when they need to. They defend their place of death to the utmost degree, killing anyone that is caught overstaying their welcome.');
 INSERT INTO ghosts_evidences(ghost, evidence) VALUES
