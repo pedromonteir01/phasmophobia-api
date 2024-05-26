@@ -5,5 +5,6 @@ const typesControllers = require('../controllers/types.controller');
 router.get('/', typesControllers.getAllTypes);
 router.get('/:name', typesControllers.getTypeByName);
 router.post('/', typesControllers.postType);
+router.delete('/:name', typesControllers.deleteType);
 
 module.exports = router;

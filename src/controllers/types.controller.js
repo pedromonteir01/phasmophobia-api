@@ -85,4 +85,24 @@ const postType = async(req, res) => {
     }
 }
 
-module.exports = { getAllTypes, getTypeByName, postType };
+const deleteType = async(req, res) => {
+    try {
+        const { name } = req.params;
+
+        const type = (await pool.query('SELECT * FROM ghosts_types WHERE name = $1', [name])).rows[0];
+
+        if(!type) {
+            return res.status(404).send({ message: 'type not found' });
+        } else {
+            await pool.query('DELETE FROM ghosts_types WHERE name = $1', [name]);
+            await pool.query('DELETE FROM ghosts_evidences WHERE ghost = $1', [name]);
+            
+            return res.status(200).send({ message: 'type deleted successfully' });
+        }
+    } catch(e) {
+        console.log(e);
+        return res.status(500).send({ message: 'Not could DELETE http' });
+    }
+}
+
+module.exports = { getAllTypes, getTypeByName, postType, deleteType };
