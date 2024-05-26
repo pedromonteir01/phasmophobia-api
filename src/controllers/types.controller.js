@@ -1,5 +1,5 @@
 const pool = require('../database/database.config');
-const { sameEvidence } = require('../models/verify.functions');
+const { sameEvidence, evidencesExists } = require('../models/verify.functions');
 
 const getAllTypes = async(req, res) => {
     try {
@@ -41,7 +41,7 @@ const getTypeByName = async(req, res) => {
 
 const postType = async(req, res) => {
     try {
-        const { name, description } = req.body;
+        const { name, description, evidences } = req.body;
         
         if(!name || !description || !evidences) {
             return res.status(400).send({ message: 'incomplete data' });
@@ -49,8 +49,34 @@ const postType = async(req, res) => {
             return res.status(400).send({ message: 'short name' });
         } else if(description.length < 15) {
             return res.status(400).send({ message: 'short description' });
+        } else if(sameEvidence(evidences)) {
+            return res.status(400).send({ message: 'the three pieces of evidence have to be different' });
         } else {
-            
+            const dbEvidences = (await pool.query('SELECT * FROM evidences;')).rows;
+            if(!evidencesExists(dbEvidences, evidences)) {
+                return res.status(400).send({ message: 'some evidence does not exist' });
+            } else {
+                const ghost = (await pool.query(`SELECT ghosts_types.name
+                FROM ghosts_types
+                INNER JOIN (
+                    SELECT ghosts_evidences.ghost
+                    FROM ghosts_evidences
+                    WHERE ghosts_evidences.evidence IN ($1, $2, $3)
+                    GROUP BY ghosts_evidences.ghost
+                ) AS matched_ghosts ON ghosts_types.name = matched_ghosts.ghost;
+                `, [evidences[0], evidences[1], evidences[2]])).rows[0];
+
+                if(ghost) {
+                    return res.status(400).send({ message: 'a type with this evidence already exists' });
+                } else {
+                    await pool.query('INSERT INTO ghosts_types(name, description) VALUES ($1, $2)', [name, description]);
+                    await pool.query('INSERT INTO ghosts_evidences(ghost, evidence) VALUES ($1, $2)',[name, evidences[0]]);
+                    await pool.query('INSERT INTO ghosts_evidences(ghost, evidence) VALUES ($1, $2)',[name, evidences[1]]);
+                    await pool.query('INSERT INTO ghosts_evidences(ghost, evidence) VALUES ($1, $2)',[name, evidences[2]]);
+
+                    return res.status(200).send({ message: 'type registered successfully' });
+                }
+            }
         }
     } catch(e) {
         console.log(e);
