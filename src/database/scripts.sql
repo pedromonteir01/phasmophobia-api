@@ -15,9 +15,9 @@ CREATE TABLE evidences(
 /* association table */
 
 CREATE TABLE ghosts_evidences(
+    id SERIAL PRIMARY KEY,
     ghost VARCHAR(35),
     evidence VARCHAR(21),
-    PRIMARY KEY (ghost, evidence),
     FOREIGN KEY (ghost) REFERENCES ghosts_types(name),
     FOREIGN KEY (evidence) REFERENCES evidences(name)
 );
