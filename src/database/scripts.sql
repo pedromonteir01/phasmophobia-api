@@ -46,7 +46,13 @@ INSERT INTO ghosts_types(name, description) VALUES('spirit', 'Spirits are very c
 ('wraith', 'Wraiths are one of the most dangerous ghosts you will find. It is also the only known ghost that has the ability of flight and has sometimes been known to travel through walls.'),
 ('banshee', 'The singing siren, known for attracting its victims through song. It has been known to single out its prey before making a killing blow.'),
 ('revenant', 'A Revenant is a violent ghost that will attack indiscriminately. Their speed can be deceiving, as they are slow while dormant; however, as soon as they hunt they can move incredibly fast.'),
-
+('yurei', 'A Yurei is a ghost that has returned to the physical world, usually for the purpose of revenge or hatred.'),
+('hantu', 'A Hantu is a rare ghost that thrives in the coldest climates. The cold seems to make them more aggressive and empowered.'),
+('onryo', 'The Onryo is often referred to as "The Wrathful Spirit". It steals souls from dying victims bodies to seek revenge. This ghost has been known to fear any form of fire, and will do anything to be far from it.'),
+('obake', 'Obake are terrifying shape-shifters, capable of taking on many forms. They have been seen taking on humanoid shapes to attract their prey.'),
+('deogen', 'Sometimes surrounded by an endless fog, Deogen have been eluding ghost hunters for years.
+These ghosts have been reported to find even the most hidden prey, before stalking them into exhaustion.'),
+('phantom', 'A Phantom is a ghost that can possess the living, inducing fear into those around it. They are most commonly summoned from Ouija Boards.'),
 
 INSERT INTO ghosts_evidences(ghost, evidence) VALUES
 ('spirit', 'emf5'),
@@ -82,6 +88,23 @@ INSERT INTO ghosts_evidences(ghost, evidence) VALUES
 ('revenant', 'ghost writing'),
 ('revenant', 'ghost orb'),
 ('revenant', 'freezing temperatures'),
-
+('yurei', 'ghost orb'),
+('yurei', 'freezing temperatures'),
+('yurei', 'd.o.t.s projector'),
+('hantu', 'ghost orb'),
+('hantu', 'freezing temperatures'),
+('hantu', 'ultraviolet'),
+('onryo', 'ghost orb'),
+('onryo', 'freezing temperatures'),
+('onryo', 'spirit box'),
+('obake', 'ghost orb'),
+('obake', 'emf5'),
+('obake', 'ultraviolet'),
+('deogen', 'spirit box'),
+('deogen', 'ghost writing'),
+('deogen', 'd.o.t.s projector'),
+('phantom', 'spirit box'),
+('phantom', 'ultraviolet'),
+('phantom', 'd.o.t.s projector'),
 
 INSERT INTO ghosts_types(name, description) VALUES('suportPut', 'GarantPUT');
