@@ -24,14 +24,37 @@ const getTypeByName = async (req, res) => {
     try {
         const { name } = req.params;
 
+        let verifyName = name.split('-');
+
         const type = await pool.query(`SELECT ghosts_types.name AS type, STRING_AGG(ghosts_evidences.evidence, ', ') AS evidences
         FROM ghosts_types
         INNER JOIN ghosts_evidences ON ghosts_types.name = ghosts_evidences.ghost
         WHERE ghosts_types.name LIKE $1
-        GROUP BY ghosts_types.name;`, [`${name}%`]);
+        GROUP BY ghosts_types.name;`, [verifyName.join(' ')]);
 
         return type.rowCount > 0 ?
             res.status(200).send(type.rows[0]) :
+            res.status(200).send({ message: 'Type not found' });
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send({ message: 'Not could GET http' });
+    }
+}
+
+const filterTypeByName = async (req, res) => {
+    try {
+        const { name } = req.params;
+
+        let verifyName = name.split('-');
+
+        const type = await pool.query(`SELECT ghosts_types.name AS type, STRING_AGG(ghosts_evidences.evidence, ', ') AS evidences
+        FROM ghosts_types
+        INNER JOIN ghosts_evidences ON ghosts_types.name = ghosts_evidences.ghost
+        WHERE ghosts_types.name LIKE $1
+        GROUP BY ghosts_types.name;`, [`${verifyName.join(' ')}%`]);
+
+        return type.rowCount > 0 ?
+            res.status(200).send(type.rows) :
             res.status(200).send({ message: 'Type not found' });
     } catch (e) {
         console.log(e);
@@ -164,4 +187,4 @@ const deleteType = async (req, res) => {
     }
 }
 
-module.exports = { getAllTypes, getTypeByName, postType, putType, deleteType };
+module.exports = { getAllTypes, getTypeByName, filterTypeByName,postType, putType, deleteType };
