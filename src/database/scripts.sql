@@ -30,10 +30,8 @@ INSERT INTO evidences(name, description) VALUES
 ('freezing temperatures', 'All ghosts make rooms cold, however, some have been known to make the temperature drop extremely fast.'), 
 ('d.o.t.s projector', 'A laser grid of light that can reveal the silhouette of the ghost.'), 
 ('ghost orb', 'Small floating orbs of light, only visible through a camera.'), 
-('spirit box', 'Only certain ghosts will talk through a Spirit Box when asked a question with your voice. Make sure the lights are turned off.');
+('spirit box', 'Only certain ghosts will talk through a Spirit Box when asked a question with your voice. Make sure the lights are turned off.'),
 ('suportPut', 'suportPut');
-
-INSERT INTO ghosts_types(name, description) VALUES('', '');
 
 INSERT INTO ghosts_types(name, description) VALUES('spirit', 'Spirits are very common ghosts. They are very powerful, but passive, only attacking when they need to. They defend their place of death to the utmost degree, killing anyone that is caught overstaying their welcome.'),
 ('poltergeist', 'One of the most famous ghosts, the Poltergeist. Known to manipulate objects around it to spread fear into its victims.'),
@@ -53,6 +51,14 @@ INSERT INTO ghosts_types(name, description) VALUES('spirit', 'Spirits are very c
 ('deogen', 'Sometimes surrounded by an endless fog, Deogen have been eluding ghost hunters for years.
 These ghosts have been reported to find even the most hidden prey, before stalking them into exhaustion.'),
 ('phantom', 'A Phantom is a ghost that can possess the living, inducing fear into those around it. They are most commonly summoned from Ouija Boards.'),
+('jinn', 'A Jinn is a territorial ghost that will attack when threatened. It has also been known to be able to travel at significant speed.'),
+('shade', 'A Shade is known to be very shy. There is evidence to suggest that a Shade will stop all paranormal activity if there are people nearby.'),
+('oni', 'Onis love to scare their victims as much as possible before attacking. They are often seen in their physical form, guarding their place of death.'),
+('goryo', 'When a Goryo passes through a DOTS projector, using a video camera is the only way to see it.'),
+('the twins', 'These ghosts have been reported to mimic each others actions. They alternate their attacks to confuse their prey.'),
+('the mimic', 'The Mimic is an elusive, mysterious, copycat ghost that mirrors traits and behaviours from others, including other ghost types.'),
+('thaye', 'Thaye have been known to rapidly age over time, even in the afterlife. From what weve learned, they seem to deteriorate faster while within the presence of the living.'),
+('suportPut', 'GarantPUT');
 
 INSERT INTO ghosts_evidences(ghost, evidence) VALUES
 ('spirit', 'emf5'),
@@ -106,5 +112,24 @@ INSERT INTO ghosts_evidences(ghost, evidence) VALUES
 ('phantom', 'spirit box'),
 ('phantom', 'ultraviolet'),
 ('phantom', 'd.o.t.s projector'),
-
-INSERT INTO ghosts_types(name, description) VALUES('suportPut', 'GarantPUT');
+('jinn', 'emf5'),
+('jinn', 'ultraviolet'),
+('jinn', 'freezing temperatures'),
+('shade', 'emf5'),
+('shade', 'ghost writing'),
+('shade', 'freezing temperatures'),
+('oni', 'emf5'),
+('oni', 'd.o.t.s projector'),
+('oni', 'freezing temperatures'),
+('goryo', 'emf5'),
+('goryo', 'd.o.t.s projector'),
+('goryo', 'ultraviolet'),
+('the twins', 'emf5'),
+('the twins', 'spirit box'),
+('the twins', 'freezing temperatures'),
+('the mimic', 'ultraviolet'),
+('the mimic', 'spirit box'),
+('the mimic', 'freezing temperatures'),
+('thaye', 'ghost orb'),
+('thaye', 'd.o.t.s projector'),
+('thaye', 'ghost writing');
